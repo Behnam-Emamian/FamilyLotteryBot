@@ -23,7 +23,7 @@ namespace FamilyLotteryBot.Dialogs
             };
 
             Entities db = new Entities();
-            //db.Lotteries.Add()
+            var Test = db.Lotteries;
 
             PromptDialog.Choice(
                 context,
