@@ -7,32 +7,59 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
+using Microsoft.Bot.Builder.Dialogs;
+using FamilyLotteryBot.Dialogs;
+using Microsoft.Bot.Builder.FormFlow;
 
 namespace FamilyLotteryBot
 {
     [BotAuthentication]
     public class MessagesController : ApiController
     {
-        /// <summary>
-        /// POST: api/Messages
-        /// Receive a message from a user and reply to it
-        /// </summary>
         public async Task<HttpResponseMessage> Post([FromBody]Activity activity)
         {
+            if (activity != null)
+            {
+                switch (activity.Type)
+                {
+                    case ActivityTypes.Message:
+                        await Conversation.SendAsync(activity, () => new Main());
+                        break;
+                }
+            }
+
+            /*
             if (activity.Type == ActivityTypes.Message)
             {
-                ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-                // calculate something for us to return
-                int length = (activity.Text ?? string.Empty).Length;
+                await Conversation.SendAsync(activity, () => new Main());
 
-                // return our reply to the user
-                Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
-                await connector.Conversations.ReplyToActivityAsync(reply);
+                switch (activity.Text)
+                {
+                    case "/echo":
+                        await Conversation.SendAsync(activity, () => new EchoDialog());
+                        break;
+
+                    case "/lotteries":
+                        await Conversation.SendAsync(activity, () => new Lotteries());
+                        break;
+
+                    default:
+                        ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
+                        // calculate something for us to return
+                        int length = (activity.Text ?? string.Empty).Length;
+
+                        // return our reply to the user
+                        Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
+                        await connector.Conversations.ReplyToActivityAsync(reply);
+                        break;
+                }
+
             }
             else
             {
                 HandleSystemMessage(activity);
-            }
+            }*/
+
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
