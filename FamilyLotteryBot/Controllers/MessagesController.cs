@@ -11,6 +11,7 @@ using Microsoft.Bot.Builder.Dialogs;
 using FamilyLotteryBot.Dialogs;
 using Microsoft.Bot.Builder.FormFlow;
 using log4net;
+using System.Web.Script.Serialization;
 
 namespace FamilyLotteryBot
 {
@@ -23,7 +24,8 @@ namespace FamilyLotteryBot
         {
             if (activity != null)
             {
-                logger.Info("Activity:\n" + "From: Id=" + activity.From.Id + ", Name=" + activity.From.Name);
+                logger.Info("Activity:\n" + JsonConvert.SerializeObject(activity));
+                
                 switch (activity.Type)
                 {
                     case ActivityTypes.Message:
