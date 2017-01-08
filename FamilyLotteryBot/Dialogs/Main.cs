@@ -7,13 +7,16 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.Bot.Builder.FormFlow;
 using System.Resources;
+using log4net;
 
 namespace FamilyLotteryBot.Dialogs
 {
     [Serializable]
     public class Main : IDialog<object>
     {
+        private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         readonly ResourceManager LocRM = new ResourceManager("FamilyLotteryBot.App_GlobalResources.Strings", typeof(Main).Assembly);
+
 
         public async Task StartAsync(IDialogContext context)
         {
@@ -22,13 +25,13 @@ namespace FamilyLotteryBot.Dialogs
         public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             var message = await argument;
-            //await context.PostAsync("You said: " + message.Text);
-            //context.Wait(MessageReceivedAsync);
+
+            logger.Info(message);
 
             var Menu = new List<string>{
-                LocRM.GetString("MainMenu1"),
-                LocRM.GetString("MainMenu2"),
-                LocRM.GetString("MainMenu3")
+                LocRM.GetString("MainMenu1")
+                //LocRM.GetString("MainMenu2"),
+                //LocRM.GetString("MainMenu3")
             };
 
             PromptDialog.Choice(

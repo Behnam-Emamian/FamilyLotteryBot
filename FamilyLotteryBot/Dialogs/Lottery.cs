@@ -1,4 +1,5 @@
 ﻿using Microsoft.Bot.Builder.Dialogs;
+using Microsoft.Bot.Connector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,28 @@ using System.Web;
 
 namespace FamilyLotteryBot.Dialogs
 {
+    [Serializable]
     public class Lottery : IDialog<object>
     {
-        readonly ResourceManager LocRM = new ResourceManager("FamilyLotteryBot.App_GlobalResources.Strings", typeof(Main).Assembly);
+        readonly ResourceManager LocRM = new ResourceManager("FamilyLotteryBot.App_GlobalResources.Strings", typeof(Lottery).Assembly);
         public async Task StartAsync(IDialogContext context)
+        {
+            var Menu = new List<string>{
+                LocRM.GetString("LotteryMenu1"),
+                LocRM.GetString("LotteryMenu2"),
+                LocRM.GetString("LotteryMenu3")
+            };
+
+            PromptDialog.Choice(
+                context,
+                AfterSelectAsync,
+                Menu,
+                LocRM.GetString("LotteryMenuMessage"),
+                LocRM.GetString("LotteryMenuMessage") + LocRM.GetString("BotPrompt"),
+                10);
+        }
+
+        public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
             var Menu = new List<string>{
                 LocRM.GetString("LotteryMenu1"),
@@ -22,7 +41,7 @@ namespace FamilyLotteryBot.Dialogs
                 context,
                 AfterSelectAsync,
                 Menu,
-                LocRM.GetString("WelcomeMessage"),
+                LocRM.GetString("LotteryMenuMessage"),
                 LocRM.GetString("BotPrompt"),
                 10);
         }

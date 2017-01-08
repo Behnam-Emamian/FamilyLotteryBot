@@ -122,21 +122,24 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Strings.en-AU.designer.cs">
+    <Compile Include="App_GlobalResources\Strings.en.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.en-AU.resx</DependentUpon>
+      <DependentUpon>Strings.en.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\Strings.fa-IR.designer.cs">
+    <Compile Include="App_GlobalResources\Strings.fa.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.fa-IR.resx</DependentUpon>
+      <DependentUpon>Strings.fa.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Dialogs\LotteriesArchive.cs" />
     <Compile Include="Dialogs\Lottery.cs" />
     <Compile Include="Dialogs\Main.cs" />
+    <Compile Include="Dialogs\Participants.cs" />
+    <Compile Include="Dialogs\Winners.cs" />
+    <Compile Include="Forms\Participant.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -153,13 +156,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Strings.en-AU.resx">
+    <EmbeddedResource Include="App_GlobalResources\Strings.en.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Strings.en-AU.designer.cs</LastGenOutput>
-    </Content>
-    <EmbeddedResource Include="App_GlobalResources\Strings.fa-IR.resx">
+      <LastGenOutput>Strings.en.designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_GlobalResources\Strings.fa.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Strings.fa-IR.designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.fa.designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

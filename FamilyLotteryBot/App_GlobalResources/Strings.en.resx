@@ -112,10 +112,16 @@
 	<data name="MainMenu3" xml:space="preserve">
 		<value>Settings</value>
 	</data>
-	<data name="LotteryMenu1" xml:space="preserve">
-		<value>Participants</value>
-	</data>
 	<data name="LotteryMenu2" xml:space="preserve">
+		<value>Participants List</value>
+	</data>
+	<data name="LotteryMenu3" xml:space="preserve">
 		<value>Winners</value>
+	</data>
+	<data name="LotteryMenu1" xml:space="preserve">
+		<value>Participate to Lottery</value>
+	</data>
+	<data name="LotteryMenuMessage" xml:space="preserve">
+		<value>Current Lottery</value>
 	</data>
 </root>
