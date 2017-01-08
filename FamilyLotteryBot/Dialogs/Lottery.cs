@@ -1,4 +1,5 @@
-﻿using Microsoft.Bot.Builder.Dialogs;
+﻿using FamilyLotteryBot.Model;
+using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,9 @@ namespace FamilyLotteryBot.Dialogs
                 LocRM.GetString("LotteryMenu2"),
                 LocRM.GetString("LotteryMenu3")
             };
+
+            Entities db = new Entities();
+            //db.Lotteries.Add()
 
             PromptDialog.Choice(
                 context,
