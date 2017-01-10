@@ -29,9 +29,9 @@ namespace FamilyLotteryBot.Dialogs
             logger.Info(message);
 
             var Menu = new List<string>{
-                LocRM.GetString("MainMenu1")
+                LocRM.GetString("MainMenu1"),
                 //LocRM.GetString("MainMenu2"),
-                //LocRM.GetString("MainMenu3")
+                LocRM.GetString("MainMenu3")
             };
 
             PromptDialog.Choice(
@@ -52,7 +52,7 @@ namespace FamilyLotteryBot.Dialogs
             else if (SelectedMenu == LocRM.GetString("MainMenu2"))
                 await new LotteriesArchive().StartAsync(context);
             else if (SelectedMenu == LocRM.GetString("MainMenu3"))
-                ;
+                await new Profile().StartAsync(context);
         }
     }
 }

@@ -130,7 +130,7 @@
 		<value>آرشیو لاتاری ها</value>
 	</data>
 	<data name="MainMenu3" xml:space="preserve">
-		<value>تنظیمات</value>
+		<value>پروفایل</value>
 	</data>
 	<data name="LotteryMenu2" xml:space="preserve">
 		<value>لیست شرکت کنندگان</value>
@@ -143,5 +143,17 @@
 	</data>
 	<data name="LotteryMenu3" xml:space="preserve">
 		<value>لیست برندگان</value>
+	</data>
+	<data name="ProfileMenu1" xml:space="preserve">
+		<value>ویرایش نام</value>
+	</data>
+	<data name="ProfileMenu2" xml:space="preserve">
+		<value>ویرایش شماره حساب</value>
+	</data>
+	<data name="ProfileMenuMessage" xml:space="preserve">
+		<value>پروفایل</value>
+	</data>
+	<data name="ProfileMenu3" xml:space="preserve">
+		<value>تغییر زبان</value>
 	</data>
 </root>

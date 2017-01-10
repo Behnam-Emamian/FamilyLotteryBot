@@ -22,7 +22,7 @@ namespace FamilyLotteryBot.Dialogs
                 LocRM.GetString("LotteryMenu3")
             };
 
-            Entities db = new Entities();
+            var db = new Entities();
             var Test = db.Lotteries;
 
             PromptDialog.Choice(
@@ -31,22 +31,6 @@ namespace FamilyLotteryBot.Dialogs
                 Menu,
                 LocRM.GetString("LotteryMenuMessage"),
                 LocRM.GetString("LotteryMenuMessage") + LocRM.GetString("BotPrompt"),
-                10);
-        }
-
-        public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
-        {
-            var Menu = new List<string>{
-                LocRM.GetString("LotteryMenu1"),
-                LocRM.GetString("LotteryMenu2")
-            };
-
-            PromptDialog.Choice(
-                context,
-                AfterSelectAsync,
-                Menu,
-                LocRM.GetString("LotteryMenuMessage"),
-                LocRM.GetString("BotPrompt"),
                 10);
         }
 

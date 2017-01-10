@@ -7,6 +7,7 @@ using System.Web;
 
 namespace FamilyLotteryBot.Dialogs
 {
+    [Serializable]
     public class Participants : IDialog<object>
     {
         public async Task StartAsync(IDialogContext context)
