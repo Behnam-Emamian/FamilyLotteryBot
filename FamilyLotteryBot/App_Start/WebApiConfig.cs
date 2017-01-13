@@ -1,9 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using log4net;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Filters;
 
 namespace FamilyLotteryBot
 {
@@ -32,6 +37,18 @@ namespace FamilyLotteryBot
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Filters.Add(new ExceptionHandlingAttribute());
+        }
+    }
+
+    public class ExceptionHandlingAttribute : ExceptionFilterAttribute
+    {
+        static readonly ILog Logger = LogManager.GetLogger("Errors");
+        public override void OnException(HttpActionExecutedContext context)
+        {
+            Logger.Error("", context.Exception);
+            //base.OnException(context);
         }
     }
 }

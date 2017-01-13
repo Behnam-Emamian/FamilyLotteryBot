@@ -98,13 +98,13 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="MainMenuMessage" xml:space="preserve">
-		<value>Welcome to Family Lottery Bot!</value>
+		<value>Main Menu</value>
 	</data>
-	<data name="BotPrompt" xml:space="preserve">
+	<data name="BotPrompt_TryAgain" xml:space="preserve">
 		<value>I didn't understand. Please try again.</value>
 	</data>
 	<data name="MainMenu1" xml:space="preserve">
-		<value>Current Lottery</value>
+		<value>Lottery</value>
 	</data>
 	<data name="MainMenu2" xml:space="preserve">
 		<value>Lotteries Archive</value>
@@ -113,7 +113,7 @@
 		<value>Profile</value>
 	</data>
 	<data name="LotteryMenu2" xml:space="preserve">
-		<value>Participants List</value>
+		<value>Participants</value>
 	</data>
 	<data name="LotteryMenu3" xml:space="preserve">
 		<value>Winners</value>
@@ -122,7 +122,7 @@
 		<value>Participate to Lottery</value>
 	</data>
 	<data name="LotteryMenuMessage" xml:space="preserve">
-		<value>Current Lottery</value>
+		<value>Lottery Menu</value>
 	</data>
 	<data name="ProfileMenu1" xml:space="preserve">
 		<value>Edit Name</value>
@@ -131,9 +131,36 @@
 		<value>Edit Account Number</value>
 	</data>
 	<data name="ProfileMenuMessage" xml:space="preserve">
-		<value>Profile</value>
+		<value>Profile Menu</value>
 	</data>
-	<data name="ProfileMenu3" xml:space="preserve">
-		<value>Change Language</value>
+	<data name="BackMenu" xml:space="preserve">
+		<value>Back</value>
+	</data>
+	<data name="Profile_Name" xml:space="preserve">
+		<value>Name</value>
+	</data>
+	<data name="BotPrompt_EnterAgain" xml:space="preserve">
+		<value>Please enter again.</value>
+	</data>
+	<data name="Profile_BankAccount" xml:space="preserve">
+		<value>Bank Account Number</value>
+	</data>
+	<data name="Profile_Name_Enter" xml:space="preserve">
+		<value>Please enter your name</value>
+	</data>
+	<data name="Profile_BankAccount_Enter" xml:space="preserve">
+		<value>Please enter your bank account number</value>
+	</data>
+	<data name="Profile_Alert" xml:space="preserve">
+		<value>Your profile is not completed, please edit it by profile menu.</value>
+	</data>
+	<data name="AdminMenu1" xml:space="preserve">
+		<value>Profiles</value>
+	</data>
+	<data name="AdminMenu2" xml:space="preserve">
+		<value>Lotteries</value>
+	</data>
+	<data name="AdminMenuMessage" xml:space="preserve">
+		<value>Admin Menu</value>
 	</data>
 </root>

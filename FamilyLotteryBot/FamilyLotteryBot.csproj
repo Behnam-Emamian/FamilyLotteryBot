@@ -133,7 +133,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\FamilyLotteryBot_db.sdf" />
+    <None Include="App_Data\FamilyLotteryBot_db.sdf" />
     <Content Include="Model\Entities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Entities.Context.cs</LastGenOutput>
@@ -155,7 +155,7 @@
     <None Include="Model\Entitiesedmx.diagram">
       <DependentUpon>Entities.edmx</DependentUpon>
     </None>
-    <None Include="App.config" />
+    <None Include="App_old.config" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -184,13 +184,14 @@
       <DependentUpon>Strings.fa.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BusinessLogic.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Dialogs\Admin.cs" />
+    <Compile Include="Dialogs\Language.cs" />
     <Compile Include="Dialogs\LotteriesArchive.cs" />
     <Compile Include="Dialogs\Lottery.cs" />
     <Compile Include="Dialogs\Main.cs" />
-    <Compile Include="Dialogs\Participants.cs" />
     <Compile Include="Dialogs\Profile.cs" />
-    <Compile Include="Dialogs\Winners.cs" />
     <Compile Include="Model\Entities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -211,6 +212,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\Lottery.cs">
+      <DependentUpon>Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Participants.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Profile.cs">

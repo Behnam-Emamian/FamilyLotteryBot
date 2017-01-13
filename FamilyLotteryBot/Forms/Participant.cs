@@ -5,7 +5,7 @@ using System.Web;
 
 namespace FamilyLotteryBot.Forms
 {
-    public class Participant
+    public class Participait
     {
     }
 }

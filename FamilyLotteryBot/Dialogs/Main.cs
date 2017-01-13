@@ -8,6 +8,8 @@ using System.Web;
 using Microsoft.Bot.Builder.FormFlow;
 using System.Resources;
 using log4net;
+using FamilyLotteryBot.Model;
+using System.Globalization;
 
 namespace FamilyLotteryBot.Dialogs
 {
@@ -17,29 +19,30 @@ namespace FamilyLotteryBot.Dialogs
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         readonly ResourceManager LocRM = new ResourceManager("FamilyLotteryBot.App_GlobalResources.Strings", typeof(Main).Assembly);
 
-
         public async Task StartAsync(IDialogContext context)
         {
-            context.Wait(MessageReceivedAsync);
+            await MessageReceivedAsync(context, null);
         }
-        public async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
+        public virtual async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
-            var message = await argument;
-
-            logger.Info(message);
+            var CultureInfo = BusinessLogic.LoadCulture(context);
+            var Profile = BusinessLogic.LoadProfile(context);
 
             var Menu = new List<string>{
-                LocRM.GetString("MainMenu1"),
-                //LocRM.GetString("MainMenu2"),
-                LocRM.GetString("MainMenu3")
+                LocRM.GetString("MainMenu1", CultureInfo),
+                //LocRM.GetString("MainMenu2", CultureInfo),
+                LocRM.GetString("MainMenu3", CultureInfo)
             };
+
+            if(Profile.Name == null || Profile.BankAccount == null)
+                await context.PostAsync(LocRM.GetString("Profile_Alert", CultureInfo));
 
             PromptDialog.Choice(
                 context,
                 AfterSelectAsync,
                 Menu,
-                LocRM.GetString("MainMenuMessage"),
-                LocRM.GetString("BotPrompt"),
+                LocRM.GetString("MainMenuMessage", CultureInfo),
+                LocRM.GetString("MainMenuMessage", CultureInfo) + LocRM.GetString("BotPrompt_TryAgain", CultureInfo),
                 10);
         }
 
@@ -47,12 +50,22 @@ namespace FamilyLotteryBot.Dialogs
         {
             string SelectedMenu = await argument;
 
-            if (SelectedMenu == LocRM.GetString("MainMenu1"))
-                await new Lottery().StartAsync(context);
-            else if (SelectedMenu == LocRM.GetString("MainMenu2"))
-                await new LotteriesArchive().StartAsync(context);
-            else if (SelectedMenu == LocRM.GetString("MainMenu3"))
-                await new Profile().StartAsync(context);
+            var CultureInfo = BusinessLogic.LoadCulture(context);
+            var Profile = BusinessLogic.LoadProfile(context);
+
+            if (SelectedMenu == LocRM.GetString("MainMenu1", CultureInfo))
+                context.Call(new Lottery(), AfterSubMenu);
+            else if (SelectedMenu == LocRM.GetString("MainMenu2", CultureInfo))
+                context.Call(new LotteriesArchive(), AfterSubMenu);
+            else if (SelectedMenu == LocRM.GetString("MainMenu3", CultureInfo))
+                context.Call(new Profile(), AfterSubMenu);
+        }
+
+        public async Task AfterSubMenu(IDialogContext context, IAwaitable<object> argument)
+        {
+            var SelectedMenu = await argument;
+
+            await MessageReceivedAsync(context, null);
         }
     }
 }

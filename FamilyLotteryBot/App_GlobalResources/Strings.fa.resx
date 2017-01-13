@@ -118,13 +118,13 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
 	<data name="MainMenuMessage" xml:space="preserve">
-    <value>به ربات لاتاری خانوادگی خوش آمدید!</value>
+    <value>منو اصلی</value>
   </data>
-	<data name="BotPrompt" xml:space="preserve">
+	<data name="BotPrompt_TryAgain" xml:space="preserve">
 		<value>، متوجه نشدم لطفا دوباره تلاش کنید</value>
 	</data>
 	<data name="MainMenu1" xml:space="preserve">
-		<value>لاتاری جاری</value>
+		<value>لاتاری</value>
 	</data>
 	<data name="MainMenu2" xml:space="preserve">
 		<value>آرشیو لاتاری ها</value>
@@ -133,27 +133,54 @@
 		<value>پروفایل</value>
 	</data>
 	<data name="LotteryMenu2" xml:space="preserve">
-		<value>لیست شرکت کنندگان</value>
+		<value>شرکت کنندگان</value>
 	</data>
 	<data name="LotteryMenuMessage" xml:space="preserve">
-		<value>لاتاری جاری</value>
+		<value>منو لاتاری</value>
 	</data>
 	<data name="LotteryMenu1" xml:space="preserve">
 		<value>شرکت در لاتاری</value>
 	</data>
 	<data name="LotteryMenu3" xml:space="preserve">
-		<value>لیست برندگان</value>
+		<value>برندگان</value>
 	</data>
 	<data name="ProfileMenu1" xml:space="preserve">
 		<value>ویرایش نام</value>
 	</data>
 	<data name="ProfileMenu2" xml:space="preserve">
-		<value>ویرایش شماره حساب</value>
+		<value>ویرایش شماره کارت</value>
 	</data>
 	<data name="ProfileMenuMessage" xml:space="preserve">
-		<value>پروفایل</value>
+		<value>منو پروفایل</value>
 	</data>
-	<data name="ProfileMenu3" xml:space="preserve">
-		<value>تغییر زبان</value>
+	<data name="BackMenu" xml:space="preserve">
+		<value>بازگشت</value>
+	</data>
+	<data name="BotPrompt_EnterAgain" xml:space="preserve">
+		<value>لطفا دوباره وارد کنید</value>
+	</data>
+	<data name="Profile_Name" xml:space="preserve">
+		<value>نام</value>
+	</data>
+	<data name="Profile_BankAccount" xml:space="preserve">
+		<value>شماره کارت بانکی</value>
+	</data>
+	<data name="Profile_Name_Enter" xml:space="preserve">
+		<value>لطفا نام خود را وارد نمایید</value>
+	</data>
+	<data name="Profile_BankAccount_Enter" xml:space="preserve">
+		<value>لطفا شماره کارت خود را وارد نمایید</value>
+	</data>
+	<data name="Profile_Alert" xml:space="preserve">
+		<value>پروفایل شما ناقص است، لطفا از طریق منو پروفایل آنرا تکمیل نمایید</value>
+	</data>
+	<data name="AdminMenu1" xml:space="preserve">
+		<value>پروفایل ها</value>
+	</data>
+	<data name="AdminMenu2" xml:space="preserve">
+		<value>لاتاری ها</value>
+	</data>
+	<data name="AdminMenuMessage" xml:space="preserve">
+		<value>منو ادمین</value>
 	</data>
 </root>

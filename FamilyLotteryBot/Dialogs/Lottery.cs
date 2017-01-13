@@ -16,21 +16,37 @@ namespace FamilyLotteryBot.Dialogs
         readonly ResourceManager LocRM = new ResourceManager("FamilyLotteryBot.App_GlobalResources.Strings", typeof(Lottery).Assembly);
         public async Task StartAsync(IDialogContext context)
         {
+            await MessageReceivedAsync(context, null);
+        }
+
+        public virtual async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
+        {
+            var CultureInfo = BusinessLogic.LoadCulture(context);
+
             var Menu = new List<string>{
-                LocRM.GetString("LotteryMenu1"),
-                LocRM.GetString("LotteryMenu2"),
-                LocRM.GetString("LotteryMenu3")
+                LocRM.GetString("LotteryMenu1", CultureInfo),
+                LocRM.GetString("LotteryMenu2", CultureInfo),
+                LocRM.GetString("LotteryMenu3", CultureInfo),
+                LocRM.GetString("BackMenu", CultureInfo)
             };
 
-            var db = new Entities();
-            var Test = db.Lotteries;
+            var Lottery = BusinessLogic.LoadCurrentLottery(context);
+            if (Lottery != null)
+            {
+                await context.PostAsync("تاریخ شروع: " + Lottery.StartDate + ", تاریخ پایان: " + Lottery.EndDate);
+
+            }
+            else
+            {
+                await context.PostAsync("لاتاری در حال برگزاری نیست");
+            }
 
             PromptDialog.Choice(
                 context,
                 AfterSelectAsync,
                 Menu,
-                LocRM.GetString("LotteryMenuMessage"),
-                LocRM.GetString("LotteryMenuMessage") + LocRM.GetString("BotPrompt"),
+                LocRM.GetString("LotteryMenuMessage", CultureInfo),
+                LocRM.GetString("LotteryMenuMessage", CultureInfo) + LocRM.GetString("BotPrompt_TryAgain", CultureInfo),
                 10);
         }
 
@@ -38,8 +54,25 @@ namespace FamilyLotteryBot.Dialogs
         {
             string SelectedMenu = await argument;
 
-            if (SelectedMenu == LocRM.GetString("MainMenu1"))
-                ;
+            var CultureInfo = BusinessLogic.LoadCulture(context);
+
+            if (SelectedMenu == LocRM.GetString("LotteryMenu1", CultureInfo))
+            {
+                await context.PostAsync("test");
+                await MessageReceivedAsync(context, null);
+            }
+            else if (SelectedMenu == LocRM.GetString("LotteryMenu2", CultureInfo))
+            {
+                await context.PostAsync(LocRM.GetString("LotteryMenu2", CultureInfo));
+                await MessageReceivedAsync(context, null);
+            }
+            else if (SelectedMenu == LocRM.GetString("LotteryMenu3", CultureInfo))
+            {
+                await context.PostAsync(LocRM.GetString("LotteryMenu3", CultureInfo));
+                await MessageReceivedAsync(context, null);
+            }
+            else if (SelectedMenu == LocRM.GetString("BackMenu", CultureInfo))
+                context.Done("Back from Lottery");
         }
     }
 }

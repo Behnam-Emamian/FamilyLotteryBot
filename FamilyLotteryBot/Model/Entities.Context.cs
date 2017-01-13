@@ -27,5 +27,6 @@ namespace FamilyLotteryBot.Model
     
         public virtual DbSet<Lottery> Lotteries { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<Participants> Participants { get; set; }
     }
 }

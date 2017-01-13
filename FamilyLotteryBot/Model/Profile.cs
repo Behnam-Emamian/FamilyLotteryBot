@@ -14,10 +14,18 @@ namespace FamilyLotteryBot.Model
     
     public partial class Profile
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Profile()
+        {
+            this.Participants = new HashSet<Participants>();
+        }
+    
         public int ProfileId { get; set; }
         public string TelegramId { get; set; }
         public string Name { get; set; }
         public string BankAccount { get; set; }
-        public string Lang { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Participants> Participants { get; set; }
     }
 }

@@ -14,6 +14,20 @@ namespace FamilyLotteryBot.Model
     
     public partial class Lottery
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Lottery()
+        {
+            this.Participants = new HashSet<Participants>();
+        }
+    
         public int LotteryId { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
+        public Nullable<int> MinValue { get; set; }
+        public Nullable<int> MaxValue { get; set; }
+        public string Password { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Participants> Participants { get; set; }
     }
 }

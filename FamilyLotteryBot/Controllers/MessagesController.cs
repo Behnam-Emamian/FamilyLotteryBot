@@ -25,36 +25,29 @@ namespace FamilyLotteryBot
             if (activity != null)
             {
                 logger.Info("Activity:\n" + JsonConvert.SerializeObject(activity));
-                
+
                 switch (activity.Type)
                 {
                     case ActivityTypes.Message:
-                        await Conversation.SendAsync(activity, () => new Main());
+                        if (activity.Text == "/start")
+                        {
+                            ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
+                            await connector.Conversations.ReplyToActivityAsync(activity.CreateReply("Welcome to Family Lottery Bot!  \nبه ربات لاتاری خانوادگی خوش آمدید"));
+                        }
+
+                        await Conversation.SendAsync(activity, () => new Language());
                         break;
 
-                    case ActivityTypes.DeleteUserData:
                     case ActivityTypes.ConversationUpdate:
+                        break;
+                    case ActivityTypes.DeleteUserData:
                     case ActivityTypes.ContactRelationUpdate:
                     case ActivityTypes.Typing:
                     case ActivityTypes.Ping:
 
                         break;
-
                 }
             }
-
-            /*
-            ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
-            // calculate something for us to return
-            int length = (activity.Text ?? string.Empty).Length;
-
-            // return our reply to the user
-            Activity reply = activity.CreateReply($"You sent {activity.Text} which was {length} characters");
-            await connector.Conversations.ReplyToActivityAsync(reply);
-
-            {
-                HandleSystemMessage(activity);
-            }*/
 
             var response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
