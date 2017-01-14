@@ -183,4 +183,10 @@
 	<data name="AdminMenuMessage" xml:space="preserve">
 		<value>منو ادمین</value>
 	</data>
+	<data name="LotteryMenu4" xml:space="preserve">
+		<value>قرعه کشی</value>
+	</data>
+	<data name="Lottery_Password_Enter" xml:space="preserve">
+		<value>لطفا رمز اجرای قرعه کشی رو وارد نمایید</value>
+	</data>
 </root>

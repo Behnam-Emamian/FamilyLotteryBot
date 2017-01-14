@@ -56,7 +56,7 @@ namespace FamilyLotteryBot.Dialogs
                 PromptDialog.Text(context, AfterGettingName, LocRM.GetString("Profile_Name_Enter", CultureInfo), LocRM.GetString("BotPrompt_EnterAgain", CultureInfo), 1);
             else if (SelectedMenu == LocRM.GetString("ProfileMenu2", CultureInfo))
                 PromptDialog.Text(context, AfterGettingBankAccount, LocRM.GetString("Profile_BankAccount_Enter", CultureInfo), LocRM.GetString("BotPrompt_EnterAgain", CultureInfo), 1);
-            else if (SelectedMenu == LocRM.GetString("BackMenu", CultureInfo))
+            else
                 context.Done("Back from profile");
         }
 

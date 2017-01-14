@@ -17,7 +17,7 @@ namespace FamilyLotteryBot.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Profile()
         {
-            this.Participants = new HashSet<Participants>();
+            this.Participants = new HashSet<Participant>();
         }
     
         public int ProfileId { get; set; }
@@ -26,6 +26,6 @@ namespace FamilyLotteryBot.Model
         public string BankAccount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Participants> Participants { get; set; }
+        public virtual ICollection<Participant> Participants { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace FamilyLotteryBot.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Participants
+    public partial class Participant
     {
         public int ParticipantId { get; set; }
         public int LotteryId { get; set; }

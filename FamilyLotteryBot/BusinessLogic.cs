@@ -41,13 +41,41 @@ namespace FamilyLotteryBot
             return CultureInfo;
         }
 
+        #region Lottery
         public static Lottery LoadCurrentLottery(IDialogContext context)
         {
-            var Lottery = db.Lotteries.Where(l => l.StartDate >= DateTime.Now && l.EndDate <= DateTime.Now).SingleOrDefault();
+            var Lottery = db.Lotteries.Where(l => l.StartDate <= DateTime.Now && DateTime.Now <= l.EndDate ).SingleOrDefault();
 
 
             return Lottery;
         }
+
+        public static void LotteryElection()
+        {
+            var CurrentLottery = LoadCurrentLottery(null);
+
+
+
+        }
+
+        public static void AddParticipant(int ProfileId, int Value)
+        {
+            var CurrentLottery = LoadCurrentLottery(null);
+
+            var Participant = new Participant
+            {
+                LotteryId = CurrentLottery.LotteryId,
+                ProfileId = ProfileId,
+                Value = Value, 
+                IsWinner = false,
+                IsAccepted = false
+            };
+
+            db.Participants.Add(Participant);
+            db.SaveChanges();
+        }
+
+        #endregion
 
         #region Profile
         public static void UpdateProfileName(IDialogContext context, string Name)

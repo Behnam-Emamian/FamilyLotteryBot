@@ -1,6 +1,7 @@
 ﻿using FamilyLotteryBot.Model;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using PersianDate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,18 +28,24 @@ namespace FamilyLotteryBot.Dialogs
                 LocRM.GetString("LotteryMenu1", CultureInfo),
                 LocRM.GetString("LotteryMenu2", CultureInfo),
                 LocRM.GetString("LotteryMenu3", CultureInfo),
+                LocRM.GetString("LotteryMenu4", CultureInfo),
                 LocRM.GetString("BackMenu", CultureInfo)
             };
 
             var Lottery = BusinessLogic.LoadCurrentLottery(context);
             if (Lottery != null)
             {
-                await context.PostAsync("تاریخ شروع: " + Lottery.StartDate + ", تاریخ پایان: " + Lottery.EndDate);
-
+                await context.PostAsync(
+                    "تاریخ شروع: " + ConvertDate.ToFa(Lottery.StartDate.Value.Date) +
+                    "  \nتاریخ پایان: " + ConvertDate.ToFa(Lottery.EndDate.Value.Date) +
+                    "  \nحداقل مبلغ: " + Lottery.MinValue +
+                    "  \nحداکثر مبلغ: " + Lottery.MaxValue +
+                    "  \nتعداد برنده: " + Lottery.Winners);
             }
             else
             {
                 await context.PostAsync("لاتاری در حال برگزاری نیست");
+                context.Done("Back from Lottery");
             }
 
             PromptDialog.Choice(
@@ -71,8 +78,28 @@ namespace FamilyLotteryBot.Dialogs
                 await context.PostAsync(LocRM.GetString("LotteryMenu3", CultureInfo));
                 await MessageReceivedAsync(context, null);
             }
-            else if (SelectedMenu == LocRM.GetString("BackMenu", CultureInfo))
+            else if (SelectedMenu == LocRM.GetString("LotteryMenu4", CultureInfo))
+            {
+                PromptDialog.Text(context, AfterGettingPassword, LocRM.GetString("Lottery_Password_Enter", CultureInfo), LocRM.GetString("BotPrompt_EnterAgain", CultureInfo), 1);
+            }
+            else
                 context.Done("Back from Lottery");
+        }
+
+        public async Task AfterGettingPassword(IDialogContext context, IAwaitable<string> argument)
+        {
+            var LotteryPassword = await argument;
+            var CurrentLottery = BusinessLogic.LoadCurrentLottery(context);
+
+            if (CurrentLottery.Password.Trim() == LotteryPassword)
+            {
+                BusinessLogic.LotteryElection();
+                await context.PostAsync("قرعه کشی با موفقت انجام شد");
+            }
+            else
+                await context.PostAsync("رمز قرعه کشی لاتاری اشتباه است");
+
+            await MessageReceivedAsync(context, null);
         }
     }
 }

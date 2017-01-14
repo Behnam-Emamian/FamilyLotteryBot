@@ -14,6 +14,7 @@
           <Property Name="MinValue" Type="int" />
           <Property Name="MaxValue" Type="int" />
           <Property Name="Password" Type="nchar" MaxLength="10" />
+          <Property Name="Winners" Type="tinyint" />
         </EntityType>
         <EntityType Name="Participants">
           <Key>
@@ -79,7 +80,7 @@
   <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Lotteries" EntityType="FamilyLotteryBot.Lottery" />
           <EntitySet Name="Profiles" EntityType="FamilyLotteryBot.Profile" />
-          <EntitySet Name="Participants" EntityType="FamilyLotteryBot.Participants" />
+          <EntitySet Name="Participants" EntityType="FamilyLotteryBot.Participant" />
           <AssociationSet Name="FK_Participant_Lottery" Association="FamilyLotteryBot.FK_Participant_Lottery">
             <End Role="Lottery" EntitySet="Lotteries" />
             <End Role="Participants" EntitySet="Participants" />
@@ -100,6 +101,7 @@
           <Property Name="MaxValue" Type="Int32" />
           <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Participants" Relationship="FamilyLotteryBot.FK_Participant_Lottery" FromRole="Lottery" ToRole="Participants" />
+          <Property Name="Winners" Type="Byte" />
         </EntityType>
         <EntityType Name="Profile">
           <Key>
@@ -111,7 +113,7 @@
           <Property Name="BankAccount" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Participants" Relationship="FamilyLotteryBot.FK_Participant_Profile" FromRole="Profile" ToRole="Participants" />
         </EntityType>
-        <EntityType Name="Participants">
+        <EntityType Name="Participant">
           <Key>
             <PropertyRef Name="ParticipantId" />
           </Key>
@@ -126,7 +128,7 @@
         </EntityType>
         <Association Name="FK_Participant_Lottery">
           <End Type="FamilyLotteryBot.Lottery" Role="Lottery" Multiplicity="1" />
-          <End Type="FamilyLotteryBot.Participants" Role="Participants" Multiplicity="*" />
+          <End Type="FamilyLotteryBot.Participant" Role="Participants" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Lottery">
               <PropertyRef Name="LotteryId" />
@@ -138,7 +140,7 @@
         </Association>
         <Association Name="FK_Participant_Profile">
           <End Type="FamilyLotteryBot.Profile" Role="Profile" Multiplicity="1" />
-          <End Type="FamilyLotteryBot.Participants" Role="Participants" Multiplicity="*" />
+          <End Type="FamilyLotteryBot.Participant" Role="Participants" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Profile">
               <PropertyRef Name="ProfileId" />
@@ -157,6 +159,7 @@
     <EntitySetMapping Name="Lotteries">
             <EntityTypeMapping TypeName="FamilyLotteryBot.Lottery">
               <MappingFragment StoreEntitySet="Lotteries">
+                <ScalarProperty Name="Winners" ColumnName="Winners" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
                 <ScalarProperty Name="MinValue" ColumnName="MinValue" />
@@ -177,7 +180,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Participants">
-            <EntityTypeMapping TypeName="FamilyLotteryBot.Participants">
+            <EntityTypeMapping TypeName="FamilyLotteryBot.Participant">
               <MappingFragment StoreEntitySet="Participants">
                 <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
                 <ScalarProperty Name="IsWinner" ColumnName="IsWinner" />
@@ -199,7 +202,7 @@
       <Diagram DiagramId="4d7b569ef23145c79656baa4c09eee62" Name="Diagram1">
         <EntityTypeShape EntityType="FamilyLotteryBot.Lottery" Width="1.5" PointX="0.75" PointY="4.25" />
         <EntityTypeShape EntityType="FamilyLotteryBot.Profile" Width="1.5" PointX="3.125" PointY="4.375" />
-        <EntityTypeShape EntityType="FamilyLotteryBot.Participants" Width="1.5" PointX="1.625" PointY="1" />
+        <EntityTypeShape EntityType="FamilyLotteryBot.Participant" Width="1.5" PointX="1.625" PointY="1" />
         <AssociationConnector Association="FamilyLotteryBot.FK_Participant_Lottery" />
         <AssociationConnector Association="FamilyLotteryBot.FK_Participant_Profile" />
       </Diagram>

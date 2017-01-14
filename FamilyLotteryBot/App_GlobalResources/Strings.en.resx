@@ -163,4 +163,10 @@
 	<data name="AdminMenuMessage" xml:space="preserve">
 		<value>Admin Menu</value>
 	</data>
+	<data name="LotteryMenu4" xml:space="preserve">
+		<value>Electing</value>
+	</data>
+	<data name="Lottery_Password_Enter" xml:space="preserve">
+		<value>Please enter password for electing lottery.</value>
+	</data>
 </root>
