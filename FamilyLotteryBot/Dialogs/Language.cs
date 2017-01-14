@@ -16,6 +16,7 @@ namespace FamilyLotteryBot.Dialogs
         public async Task StartAsync(IDialogContext context)
         {
             context.Wait(MessageReceivedAsync);
+            //await MessageReceivedAsync(context, null);
         }
 
         public virtual async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)

@@ -187,6 +187,21 @@
 		<value>قرعه کشی</value>
 	</data>
 	<data name="Lottery_Password_Enter" xml:space="preserve">
-		<value>لطفا رمز اجرای قرعه کشی رو وارد نمایید</value>
+		<value>لطفا رمز اجرای قرعه کشی را وارد نمایید</value>
+	</data>
+	<data name="Lottery_NoCurrentLottery" xml:space="preserve">
+		<value>لاتاری در حال برگزاری نیست</value>
+	</data>
+	<data name="Lottery_Password_Error" xml:space="preserve">
+		<value>رمز قرعه کشی لاتاری اشتباه است</value>
+	</data>
+	<data name="Lottery_Successful" xml:space="preserve">
+		<value>قرعه کشی با موفقت انجام شد</value>
+	</data>
+	<data name="Lottery_Value_Enter" xml:space="preserve">
+		<value>با چه مبلغی در لاتاری شرکت میکنید؟</value>
+	</data>
+	<data name="Lottery_ReciepNo_Enter" xml:space="preserve">
+		<value>لطفا شناسه پرداخت را وارد نمایید</value>
 	</data>
 </root>

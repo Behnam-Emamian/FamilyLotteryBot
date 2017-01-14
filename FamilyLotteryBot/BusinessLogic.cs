@@ -11,7 +11,7 @@ namespace FamilyLotteryBot
     public class BusinessLogic
     {
         static Entities db = new Entities();
-        public static Model.Profile LoadProfile(IDialogContext context, bool Reload = false)
+        public static Profile LoadProfile(IDialogContext context, bool Reload = false)
         {
             Profile Profile;
             if (!context.UserData.TryGetValue("Profile", out Profile) || Reload)
@@ -20,7 +20,7 @@ namespace FamilyLotteryBot
                 Profile = db.Profiles.Where(p => p.TelegramId == context.Activity.From.Id).SingleOrDefault();
                 if (Profile == null)
                 {
-                    Profile = new Model.Profile()
+                    Profile = new Profile()
                     {
                         TelegramId = context.Activity.From.Id
                     };
@@ -44,53 +44,59 @@ namespace FamilyLotteryBot
         #region Lottery
         public static Lottery LoadCurrentLottery(IDialogContext context)
         {
-            var Lottery = db.Lotteries.Where(l => l.StartDate <= DateTime.Now && DateTime.Now <= l.EndDate ).SingleOrDefault();
-
-
-            return Lottery;
+            Lottery CurrentLottery;
+            if (!context.UserData.TryGetValue("CurrentLottery", out CurrentLottery))
+                CurrentLottery = db.Lotteries.Where(l => l.StartDate <= DateTime.Now && DateTime.Now <= l.EndDate).SingleOrDefault();
+            return CurrentLottery;
         }
 
-        public static void LotteryElection()
+        public static void LotteryElection(Lottery CurrentLottery)
         {
-            var CurrentLottery = LoadCurrentLottery(null);
 
 
 
         }
+        #endregion
 
-        public static void AddParticipant(int ProfileId, int Value)
+        #region Participant
+        public static void AddParticipant(int LotteryId, int ProfileId, int Value, string ReciepNo)
         {
-            var CurrentLottery = LoadCurrentLottery(null);
+            var Participant = db.Participants.Where(p => p.LotteryId == LotteryId && p.ProfileId == ProfileId).SingleOrDefault();
 
-            var Participant = new Participant
+            if (Participant != null)
             {
-                LotteryId = CurrentLottery.LotteryId,
-                ProfileId = ProfileId,
-                Value = Value, 
-                IsWinner = false,
-                IsAccepted = false
-            };
+                Participant.Value = Value;
+                Participant.ReciepNo = ReciepNo;
+                Participant.IsAccepted = false;
+                db.SaveChanges();
+            }
+            else
+            {
+                db.Participants.Add(new Participant
+                {
+                    LotteryId = LotteryId,
+                    ProfileId = ProfileId,
+                    Value = Value,
+                    ReciepNo = ReciepNo,
+                    IsWinner = false,
+                    IsAccepted = false
+                });
+                db.SaveChanges();
+            }
 
-            db.Participants.Add(Participant);
-            db.SaveChanges();
         }
-
         #endregion
 
         #region Profile
-        public static void UpdateProfileName(IDialogContext context, string Name)
+        public static void UpdateProfileName(int ProfileId, string Name)
         {
-            var Profile = db.Profiles.Where(p => p.TelegramId == context.Activity.From.Id).SingleOrDefault();
-            Profile.Name = Name;
+            db.Profiles.Where(p => p.ProfileId == ProfileId).SingleOrDefault().Name = Name;
             db.SaveChanges();
-            LoadProfile(context, true);
         }
-        public static void UpdateProfileBankAccount(IDialogContext context, string BankAccount)
+        public static void UpdateProfileBankAccount(int ProfileId, string BankAccount)
         {
-            var Profile = db.Profiles.Where(p => p.TelegramId == context.Activity.From.Id).SingleOrDefault();
-            Profile.BankAccount = BankAccount;
+            db.Profiles.Where(p => p.ProfileId == ProfileId).SingleOrDefault().BankAccount = BankAccount;
             db.SaveChanges();
-            LoadProfile(context, true);
         }
         #endregion
     }

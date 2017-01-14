@@ -159,7 +159,6 @@
     <None Include="Model\Entitiesedmx.diagram">
       <DependentUpon>Entities.edmx</DependentUpon>
     </None>
-    <None Include="App.config" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -218,6 +217,7 @@
     <Compile Include="Model\Lottery.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\MetaData.cs" />
     <Compile Include="Model\Participant.cs">
       <DependentUpon>Entities.tt</DependentUpon>
     </Compile>

@@ -20,6 +20,7 @@ namespace FamilyLotteryBot.Model
         public int Value { get; set; }
         public bool IsWinner { get; set; }
         public Nullable<bool> IsAccepted { get; set; }
+        public string ReciepNo { get; set; }
     
         public virtual Lottery Lotteries { get; set; }
         public virtual Profile Profiles { get; set; }

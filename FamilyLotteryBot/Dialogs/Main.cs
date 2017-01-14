@@ -18,14 +18,14 @@ namespace FamilyLotteryBot.Dialogs
     {
         private static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         readonly ResourceManager LocRM = new ResourceManager("FamilyLotteryBot.App_GlobalResources.Strings", typeof(Main).Assembly);
-
+        CultureInfo CultureInfo;
         public async Task StartAsync(IDialogContext context)
         {
+            CultureInfo = BusinessLogic.LoadCulture(context);
             await MessageReceivedAsync(context, null);
         }
         public virtual async Task MessageReceivedAsync(IDialogContext context, IAwaitable<IMessageActivity> argument)
         {
-            var CultureInfo = BusinessLogic.LoadCulture(context);
             var Profile = BusinessLogic.LoadProfile(context);
 
             var Menu = new List<string>{
@@ -49,9 +49,6 @@ namespace FamilyLotteryBot.Dialogs
         public async Task AfterSelectAsync(IDialogContext context, IAwaitable<string> argument)
         {
             string SelectedMenu = await argument;
-
-            var CultureInfo = BusinessLogic.LoadCulture(context);
-            var Profile = BusinessLogic.LoadProfile(context);
 
             if (SelectedMenu == LocRM.GetString("MainMenu1", CultureInfo))
                 context.Call(new Lottery(), AfterSubMenu);

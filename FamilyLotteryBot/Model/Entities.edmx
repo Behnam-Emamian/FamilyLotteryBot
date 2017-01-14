@@ -26,6 +26,7 @@
           <Property Name="Value" Type="int" Nullable="false" />
           <Property Name="IsWinner" Type="bit" Nullable="false" />
           <Property Name="IsAccepted" Type="bit" />
+          <Property Name="ReciepNo" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Profiles">
           <Key>
@@ -125,6 +126,7 @@
           <Property Name="IsAccepted" Type="Boolean" />
           <NavigationProperty Name="Lotteries" Relationship="FamilyLotteryBot.FK_Participant_Lottery" FromRole="Participants" ToRole="Lottery" />
           <NavigationProperty Name="Profiles" Relationship="FamilyLotteryBot.FK_Participant_Profile" FromRole="Participants" ToRole="Profile" />
+          <Property Name="ReciepNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Participant_Lottery">
           <End Type="FamilyLotteryBot.Lottery" Role="Lottery" Multiplicity="1" />
@@ -182,6 +184,7 @@
           <EntitySetMapping Name="Participants">
             <EntityTypeMapping TypeName="FamilyLotteryBot.Participant">
               <MappingFragment StoreEntitySet="Participants">
+                <ScalarProperty Name="ReciepNo" ColumnName="ReciepNo" />
                 <ScalarProperty Name="IsAccepted" ColumnName="IsAccepted" />
                 <ScalarProperty Name="IsWinner" ColumnName="IsWinner" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
@@ -200,9 +203,9 @@
 <edmx:Options><DesignerInfoPropertySet><DesignerProperty Name="ValidateOnBuild" Value="True" /><DesignerProperty Name="EnablePluralization" Value="False" /><DesignerProperty Name="IncludeForeignKeysInModel" Value="True" /><DesignerProperty Name="UseLegacyProvider" Value="False" /><DesignerProperty Name="CodeGenerationStrategy" Value="None" /></DesignerInfoPropertySet></edmx:Options>
 <edmx:Diagrams >
       <Diagram DiagramId="4d7b569ef23145c79656baa4c09eee62" Name="Diagram1">
-        <EntityTypeShape EntityType="FamilyLotteryBot.Lottery" Width="1.5" PointX="0.75" PointY="4.25" />
-        <EntityTypeShape EntityType="FamilyLotteryBot.Profile" Width="1.5" PointX="3.125" PointY="4.375" />
-        <EntityTypeShape EntityType="FamilyLotteryBot.Participant" Width="1.5" PointX="1.625" PointY="1" />
+        <EntityTypeShape EntityType="FamilyLotteryBot.Lottery" Width="1.5" PointX="0.75" PointY="3.5" />
+        <EntityTypeShape EntityType="FamilyLotteryBot.Profile" Width="1.5" PointX="5.5" PointY="3.625" />
+        <EntityTypeShape EntityType="FamilyLotteryBot.Participant" Width="1.5" PointX="3.125" PointY="2.125" />
         <AssociationConnector Association="FamilyLotteryBot.FK_Participant_Lottery" />
         <AssociationConnector Association="FamilyLotteryBot.FK_Participant_Profile" />
       </Diagram>

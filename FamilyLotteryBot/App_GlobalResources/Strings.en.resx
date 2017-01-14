@@ -169,4 +169,19 @@
 	<data name="Lottery_Password_Enter" xml:space="preserve">
 		<value>Please enter password for electing lottery.</value>
 	</data>
+	<data name="Lottery_NoCurrentLottery" xml:space="preserve">
+		<value>There is no running lottery.</value>
+	</data>
+	<data name="Lottery_Successful" xml:space="preserve">
+		<value>Teh lottery has been runned successfully.</value>
+	</data>
+	<data name="Lottery_Password_Error" xml:space="preserve">
+		<value>The lottery password is wrong.</value>
+	</data>
+	<data name="Lottery_Value_Enter" xml:space="preserve">
+		<value>Please enter lottery value.</value>
+	</data>
+	<data name="Lottery_ReciepNo_Enter" xml:space="preserve">
+		<value>Please enter reciep no</value>
+	</data>
 </root>

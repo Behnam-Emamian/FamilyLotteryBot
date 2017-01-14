@@ -25,6 +25,7 @@ namespace FamilyLotteryBot
                 ContractResolver = new CamelCasePropertyNamesContractResolver(),
                 Formatting = Newtonsoft.Json.Formatting.Indented,
                 NullValueHandling = NullValueHandling.Ignore,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             };
 
             // Web API configuration and services
